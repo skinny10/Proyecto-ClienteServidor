@@ -4,7 +4,8 @@ import (
 	"net/http"
 	"sync"
 
-	"cruds/utils" // Importar paquete utils
+	"hello/cruds/utils" // Importar paquete utils
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,7 +14,7 @@ var (
 	mutex       sync.Mutex
 )
 
-// notifica a los clientes de long polling
+// aqui notificamos a los clientes suscritos al long
 func notifySubscribers() {
 	mutex.Lock()
 	defer mutex.Unlock()
@@ -25,7 +26,7 @@ func notifySubscribers() {
 	subscribers = nil
 }
 
-// Maneja las suscripciones de long polling
+// Maneja las benditas suscripciones de long polling
 func longPollingHandler(c *gin.Context) {
 	ch := make(chan []utils.Item)
 
